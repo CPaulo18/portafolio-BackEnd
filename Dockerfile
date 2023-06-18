@@ -1,4 +1,4 @@
-FROM amazoncorretto:8-apline-jdk
+FROM openjdk:17
 
 RUN mkdir /app
 

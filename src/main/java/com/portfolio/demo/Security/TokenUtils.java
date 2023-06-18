@@ -16,8 +16,11 @@ public class TokenUtils {
     private final static Long ACCESS_TOKEN_VALIDITY_SECOND = 2_592_000L;
 
     public static String createToken(String name, String email){
+
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECOND * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
+
+        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
         Map<String, Object> extra = new HashMap<>();
         extra.put("name", name);
@@ -26,7 +29,7 @@ public class TokenUtils {
                 .setSubject(email)
                 .setExpiration(expirationDate)
                 .addClaims(extra)
-                .signWith(SignatureAlgorithm.HS256, ACCESS_TOKEN_SECRET.getBytes())
+                .signWith(key)
                 .compact();
     }
 
