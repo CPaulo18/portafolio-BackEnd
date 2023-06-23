@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/skill")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CSkill {
     @Autowired
     SSkill sSkill;
@@ -23,6 +23,7 @@ public class CSkill {
         List<Skill> list = sSkill.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
+
     @PostMapping("/create")
     public ResponseEntity<Skill> create(@RequestBody dtoSkill dtoS){
         if(StringUtils.isBlank(dtoS.getSkillName()))

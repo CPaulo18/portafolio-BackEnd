@@ -2,7 +2,6 @@ package com.portfolio.demo.Controller;
 
 import com.portfolio.demo.Dto.Mensaje;
 import com.portfolio.demo.Dto.dtoUser;
-import com.portfolio.demo.Entity.Education;
 import com.portfolio.demo.Entity.User;
 import com.portfolio.demo.Service.UserService;
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +24,17 @@ public class UserController {
         List<User> list  = sUser.list();
         return  new ResponseEntity(list, HttpStatus.OK);
     }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<User> getById(@PathVariable("id")int id){
+        if(!sUser.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
+        }
+
+        User user = sUser.getOne(id).get();
+        return new ResponseEntity(user, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoUser dtoUser){
         if(StringUtils.isBlank(dtoUser.getFirstName()))

@@ -1,8 +1,7 @@
 package com.portfolio.demo.Service;
 
-import com.portfolio.demo.Entity.Education;
 import com.portfolio.demo.Entity.User;
-import com.portfolio.demo.Repository.IUserRepository;
+import com.portfolio.demo.Repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +12,31 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserService  {
-    @Autowired IUserRepository iUserRepository;
+    @Autowired
+    UserRepository userRepository;
 
     public List<User> list(){
-        return iUserRepository.findAll();
+        return userRepository.findAll();
     }
 
     public Optional<User> getOne(int id){
-        return iUserRepository.findById(id);
+        return userRepository.findById(id);
     }
 
     public Optional<User> getByNameU(String firstName){
-        return iUserRepository.findByNameU(firstName);
+        return userRepository.findByNameU(firstName);
     }
 
-    public void save(User user){ iUserRepository.save(user);
+    public void save(User user){ userRepository.save(user);
     }
 
     public void Delete(int id){
-        iUserRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
     public boolean existsById(int id){
-        return iUserRepository.existsById(id);
+        return userRepository.existsById(id);
     }
     public boolean existsByNameU(String expName){
-        return iUserRepository.existsByNameU(expName);
+        return userRepository.existsByNameU(expName);
     }
 }

@@ -1,7 +1,7 @@
 package com.portfolio.demo.Service;
 
 import com.portfolio.demo.Entity.Skill;
-import com.portfolio.demo.Repository.RSkill;
+import com.portfolio.demo.Repository.RepoSkill;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,33 +13,33 @@ import java.util.Optional;
 @Service
 public class SSkill {
     @Autowired
-    RSkill rSkill;
+    RepoSkill repoSkill;
 
     public List<Skill> list(){
-        return rSkill.findAll();
+        return repoSkill.findAll();
     }
 
     public Optional<Skill> getOne(int id){
-        return rSkill.findById(id);
+        return repoSkill.findById(id);
     }
 
     public Optional<Skill> getByName(String skillName){
-        return rSkill.findByNameS(skillName);
+        return repoSkill.findByNameS(skillName);
     }
 
     public void save(Skill s){
-         rSkill.save(s);
+         repoSkill.save(s);
     }
 
     public void delete(int id){
-        rSkill.deleteById(id);
+        repoSkill.deleteById(id);
     }
 
     public boolean existsByName(String skillName){
-        return rSkill.existsByNameS(skillName);
+        return repoSkill.existsByNameS(skillName);
     }
 
     public boolean existsById(int id){
-        return rSkill.existsById(id);
+        return repoSkill.existsById(id);
     }
 }

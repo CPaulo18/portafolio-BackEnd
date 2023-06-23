@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/education")
-@CrossOrigin("http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CEducation {
     @Autowired
     SEducation sEducation;
@@ -24,7 +24,7 @@ public class CEducation {
     @GetMapping("/list")
     public ResponseEntity<List<Education>> list(){
         List<Education> list  = sEducation.list();
-        return  new ResponseEntity(list, HttpStatus.OK);
+        return new ResponseEntity(list, HttpStatus.OK);
     }
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducation dtoEdu){

@@ -1,10 +1,10 @@
 package com.portfolio.demo.Security;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
-import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Collections;
 import java.util.Date;
@@ -20,8 +20,6 @@ public class TokenUtils {
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECOND * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime);
 
-        Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-
         Map<String, Object> extra = new HashMap<>();
         extra.put("name", name);
 
@@ -29,14 +27,14 @@ public class TokenUtils {
                 .setSubject(email)
                 .setExpiration(expirationDate)
                 .addClaims(extra)
-                .signWith(key)
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public static UsernamePasswordAuthenticationToken getAuthentication(String token){
         try {
             Claims claims = Jwts.parserBuilder()
-                    .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
+                    .setSigningKey(getSignInKey())
                     .build()
                     .parseClaimsJws(token)
                     .getBody();
@@ -46,6 +44,11 @@ public class TokenUtils {
         }catch (JwtException e){
             return null;
         }
+    }
+
+    private static Key getSignInKey(){
+        byte[] keyBytes = Decoders.BASE64.decode(ACCESS_TOKEN_SECRET);
+        return Keys.hmacShaKeyFor(keyBytes);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.portfolio.demo.Service;
 
 import com.portfolio.demo.Entity.Experience;
-import com.portfolio.demo.Repository.RExperience;
+import com.portfolio.demo.Repository.RepoExperience;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,31 +13,31 @@ import java.util.Optional;
 @Transactional
 public class SExperience {
     @Autowired
-    RExperience rExperience;
+    RepoExperience repoExperience;
 
     public List<Experience> list(){
-        return rExperience.findAll();
+        return repoExperience.findAll();
     }
 
     public Optional<Experience> getOne(int id){
-        return rExperience.findById(id);
+        return repoExperience.findById(id);
     }
 
     public Optional<Experience> getByNameE(String expName){
-        return rExperience.findByNameE(expName);
+        return repoExperience.findByNameE(expName);
     }
 
     public void save(Experience exp){
-        rExperience.save(exp);
+        repoExperience.save(exp);
     }
 
     public void Delete(int id){
-        rExperience.deleteById(id);
+        repoExperience.deleteById(id);
     }
     public boolean existsById(int id){
-        return rExperience.existsById(id);
+        return repoExperience.existsById(id);
     }
     public boolean existsByNameE(String expName){
-        return rExperience.existsByNameE(expName);
+        return repoExperience.existsByNameE(expName);
     }
 }

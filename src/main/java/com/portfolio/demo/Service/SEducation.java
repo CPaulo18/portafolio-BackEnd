@@ -1,7 +1,7 @@
 package com.portfolio.demo.Service;
 
 import com.portfolio.demo.Entity.Education;
-import com.portfolio.demo.Repository.REducation;
+import com.portfolio.demo.Repository.RepoEducation;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,30 +13,30 @@ import java.util.Optional;
 @Transactional
 public class SEducation {
     @Autowired
-    REducation rEducation;
+    RepoEducation repoEducation;
 
     public List<Education> list(){
-        return rEducation.findAll();
+        return repoEducation.findAll();
     }
     public Optional<Education> getOne(int id){
-        return rEducation.findById(id);
+        return repoEducation.findById(id);
     }
 
     public Optional<Education> getByNameE(String eduName){
-        return rEducation.findByNameE(eduName);
+        return repoEducation.findByNameE(eduName);
     }
 
     public void save(Education edu){
-        rEducation.save(edu);
+        repoEducation.save(edu);
     }
 
     public void Delete(int id){
-        rEducation.deleteById(id);
+        repoEducation.deleteById(id);
     }
     public boolean existsById(int id){
-        return rEducation.existsById(id);
+        return repoEducation.existsById(id);
     }
     public boolean existsByNameE(String eduName){
-        return rEducation.existsByNameE(eduName);
+        return repoEducation.existsByNameE(eduName);
     }
 }
