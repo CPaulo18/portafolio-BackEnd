@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"https://frontendap-65c03.web.app","http://localhost:4200"})
 public class UserController {
     @Autowired
     UserService sUser;
