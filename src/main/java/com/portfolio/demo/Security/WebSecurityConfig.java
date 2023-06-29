@@ -63,7 +63,7 @@ public class WebSecurityConfig {
     }
 
     public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("darwin"));
+        System.out.println(new BCryptPasswordEncoder().encode("prueba123"));
     }
 
 }

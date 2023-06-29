@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/education")
-@CrossOrigin(origins = {"https://frontendap-65c03.web.app","http://localhost:4200"})
+@CrossOrigin(origins = "https://frontendap-65c03.web.app")
 public class CEducation {
     @Autowired
     SEducation sEducation;
