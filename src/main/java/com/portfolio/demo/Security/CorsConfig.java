@@ -14,12 +14,12 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/login")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("https://frontendap-65c03.web.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .exposedHeaders("*");
 
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:4200")
+                        .allowedOrigins("https://frontendap-65c03.web.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
