@@ -16,11 +16,14 @@ public class CorsConfig {
                 registry.addMapping("/login")
                         .allowedOrigins("https://frontendap-65c03.web.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .exposedHeaders("*");
+                        .exposedHeaders("*")
+                        .allowCredentials(true);
 
                 registry.addMapping("/**")
                         .allowedOrigins("https://frontendap-65c03.web.app")
                         .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedHeaders("*")
+                        .allowCredentials(true);
             }
         };
     }
