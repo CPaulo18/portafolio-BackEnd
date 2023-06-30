@@ -21,7 +21,7 @@ public class CorsConfig {
 
                 registry.addMapping("/**")
                         .allowedOrigins("https://frontendap-65c03.web.app")
-                        .allowedMethods("GET", "POST", "PUT", "DELETE");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             }
