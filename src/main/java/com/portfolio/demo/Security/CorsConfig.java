@@ -15,12 +15,12 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/login")
                         .allowedOrigins("https://frontendap-65c03.web.app")
-                        .allowedMethods("*")
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
                         .exposedHeaders("*");
 
-                registry.addMapping("/users/**")
+                registry.addMapping("/**")
                         .allowedOrigins("https://frontendap-65c03.web.app")
-                        .allowedMethods("*");
+                        .allowedMethods("GET", "POST", "PUT", "DELETE");
             }
         };
     }

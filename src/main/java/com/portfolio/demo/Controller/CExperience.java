@@ -14,7 +14,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/experience")
-@CrossOrigin(origins = "https://frontendap-65c03.web.app")
 public class CExperience {
     @Autowired
     SExperience sExperience;
