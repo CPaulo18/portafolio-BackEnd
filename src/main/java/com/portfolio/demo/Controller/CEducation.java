@@ -5,6 +5,7 @@ import com.portfolio.demo.Dto.dtoEducation;
 
 import com.portfolio.demo.Entity.Education;
 
+import com.portfolio.demo.Entity.Experience;
 import com.portfolio.demo.Service.SEducation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,17 @@ public class CEducation {
         List<Education> list  = sEducation.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Education> getById(@PathVariable("id")int id){
+        if(!sEducation.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
+        }
+        Education education = sEducation.getOne(id).get();
+        return new ResponseEntity(education, HttpStatus.OK);
+    }
+
+
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoEducation dtoEdu){
         if(StringUtils.isBlank(dtoEdu.getEduName()))

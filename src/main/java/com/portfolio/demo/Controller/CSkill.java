@@ -3,6 +3,7 @@ package com.portfolio.demo.Controller;
 import com.portfolio.demo.Dto.Mensaje;
 import com.portfolio.demo.Entity.Skill;
 import com.portfolio.demo.Dto.dtoSkill;
+import com.portfolio.demo.Entity.User;
 import com.portfolio.demo.Service.SSkill;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,16 @@ public class CSkill {
     public ResponseEntity<List<Skill>> list(){
         List<Skill> list = sSkill.list();
         return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Skill> getById(@PathVariable("id")int id){
+        if(!sSkill.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
+        }
+
+        Skill skill = sSkill.getOne(id).get();
+        return new ResponseEntity(skill, HttpStatus.OK);
     }
 
     @PostMapping("/create")

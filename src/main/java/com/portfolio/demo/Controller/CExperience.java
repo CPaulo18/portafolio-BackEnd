@@ -3,6 +3,7 @@ package com.portfolio.demo.Controller;
 import com.portfolio.demo.Dto.Mensaje;
 import com.portfolio.demo.Dto.dtoExperience;
 import com.portfolio.demo.Entity.Experience;
+import com.portfolio.demo.Entity.Skill;
 import com.portfolio.demo.Service.SExperience;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,17 @@ public class CExperience {
         List<Experience> list = sExperience.list();
         return new ResponseEntity(list, HttpStatus.OK);
     }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Experience> getById(@PathVariable("id")int id){
+        if(!sExperience.existsById(id)){
+            return new ResponseEntity(new Mensaje("No existe el ID"), HttpStatus.BAD_REQUEST);
+        }
+
+        Experience experience = sExperience.getOne(id).get();
+        return new ResponseEntity(experience, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoExperience dtoexp) {
         if(StringUtils.isBlank(dtoexp.getExpName()))
